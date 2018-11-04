@@ -1,0 +1,9 @@
+db.sqlite3
+encrypt_password
+system_admin_and_maintenance/__init__.pyc
+system_admin_and_maintenance/settings.pyc
+system_admin_and_maintenance/urls.pyc
+system_admin_and_maintenance/wsgi.pyc
+gui/views.pyc
+gui/urls.pyc
+gui/__init__.pyc
