@@ -17,13 +17,21 @@ def index(request):
 def grub(request):
     command = "gedit /etc/default/grub".split(" ")
     subprocess.Popen(command, stdout=subprocess.PIPE)
+    # return HttpResponse("Reached!")
+
     return redirect('gui:index')
 
 def grub_order(request):
-    pass
+    return redirect('gui:index')
 
 def grub_timeout(request):
-    pass
+    value = request.GET['timeout']
+    if value:
+        timeout="sudo -S sed -i s/GRUB_TIMEOUT=.*/GRUB_TIMEOUT="+str(value)+"/ /etc/default/grub"
+        print(timeout)
+    else:
+        messages.error(request, 'Please enter time!')
+    return redirect('gui:index')
 
 def change_splash(request):
     root = tk.Tk()
@@ -35,6 +43,7 @@ def change_splash(request):
     if file_path.split(".")[1] not in ["jpg", "png", "jpeg"]:
         messages.error(request, 'Please select an Image instead!')
 
+    root.destroy()
     return redirect('gui:index')
 
 

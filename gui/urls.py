@@ -10,5 +10,7 @@ urlpatterns = [
     url(regex=r'^logout/$', view=views.logout, name='logout'),
     url(regex=r'^restart/$', view=views.restart, name='restart'),
     url(regex=r'^force-restart/$', view=views.force_restart, name='force-restart'),
-    url(regex=r'^change-splash/$', view=views.change_splash, name='change-splash')
+    url(regex=r'^change-splash/$', view=views.change_splash, name='change-splash'),
+    url(regex=r'^change-grub-order/$', view=views.grub_order, name='grub-order'),
+    url(regex=r'^change-grub-timeout/$', view=views.grub_timeout, name='grub-timeout'),
 ]
