@@ -1,16 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
 <div class="container">
     <div class="row">
-
+        <div class="col-md-12 col-sm-12">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <div class="alert alert-danger">
+                    <span {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</span>
+                </div>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body"><a href="/gui/grub/">Grub</a></div>
@@ -71,7 +74,7 @@
             <div class="card">
                 <div class="card-body"><a href="/gui/change-grub-order/">Change Grub Order</a>
                     <form action="/gui/change-grub-order/" method="get">
-                        <input type="number" placeholder="enter value" name="number"><br>
+                        <input type="number" placeholder="enter value among 0, 1, 2" name="number"><br>
                         <input type="submit" value="Submit">
                     </form>
                 </div>
