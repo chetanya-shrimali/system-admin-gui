@@ -8,21 +8,75 @@
     {% endfor %}
 </ul>
 {% endif %}
-<ul>
-    <li><a href="/gui/grub/">Grub</a>
-    </li>
-    <li><a href="/gui/shutdown/">Shutdown</a></li>
-    <li><a href="/gui/cancel-shutdown/">Cancel Shutdown</a></li>
-    <li><a href="/gui/logout/">Logout</a></li>
-    <li><a href="/gui/restart/">Restart</a></li>
-    <li><a href="/gui/force-restart/">Force Restart</a></li>
-    <li><a href="/gui/change-splash/">Change Splash</a></li>
-    <li><a href="/gui/change-grub-order/">Change Grub Order</a></li>
-    <li><a href="/gui/change-grub-timeout/">Change Grub Timeout</a>
-        <form action="/gui/change-grub-timeout/" method="get">
-            <input type="number" placeholder="enter value in seconds" name="timeout"><br>
-            <input type="submit" value="Submit">
-          </form>
-    </li>
-</ul>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body"><a href="/gui/grub/">Grub</a></div>
+            </div>
+
+            <div class="card">
+                <div class="card-body"><a href="/gui/grub/">
+                    <a href="/gui/shutdown/">Shutdown</a>
+                    <form action="/gui/shutdown/" method="get">
+                        <input type="number" placeholder="enter value in seconds" name="timeout"><br>
+                        <input type="submit" value="Submit">
+                    </form></a>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="card-body">
+                    <a href="/gui/restart/">Restart</a>
+                    <form action="/gui/restart/" method="get">
+                        <input type="number" placeholder="enter value in seconds" name="timeout"><br>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card">
+                <div class="card-body"><a href="/gui/grub/"><a href="/gui/cancel-shutdown/">Cancel Shutdown</a></div>
+            </div>
+
+            <div class="card">
+                    <div class="card-body"><a href="/gui/change-splash/">Change Splash</a></div>
+                </div>
+            <div class="card">
+                <div class="card-body">
+                    <a href="/gui/change-grub-timeout/">Change Grub Timeout</a>
+                    <form action="/gui/change-grub-timeout/" method="get">
+                        <input type="number" placeholder="enter value in seconds" name="timeout"><br>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card">
+                <div class="card-body"><a href="/gui/logout/">Logout</a></div>
+            </div>
+
+            <div class="card">
+                <div class="card-body"><a href="/gui/force-restart/">Force Restart</a></div>
+            </div>
+
+            <div class="card">
+                <div class="card-body"><a href="/gui/change-grub-order/">Change Grub Order</a>
+                    <form action="/gui/change-grub-order/" method="get">
+                        <input type="number" placeholder="enter value" name="number"><br>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -22,12 +22,19 @@ def grub(request):
     return redirect('gui:index')
 
 def grub_order(request):
+    value = request.GET['number']
+    if value not in ['0','1','2']:
+        messages.error(request, 'Enter a value among 0, 1 or 2')
+    else:
+        change_default="sudo -S sed -i s/GRUB_DEFAULT=.*/GRUB_DEFAULT={}/ /etc/default/grub".format(value)
+        print(change_default)
+
     return redirect('gui:index')
 
 def grub_timeout(request):
     value = request.GET['timeout']
     if value:
-        timeout="sudo -S sed -i s/GRUB_TIMEOUT=.*/GRUB_TIMEOUT="+str(value)+"/ /etc/default/grub"
+        timeout="sudo -S sed -i s/GRUB_TIMEOUT=.*/GRUB_TIMEOUT={}/ /etc/default/grub".format(value)
         print(timeout)
     else:
         messages.error(request, 'Please enter time!')
@@ -48,6 +55,7 @@ def change_splash(request):
 
 
 def shutdown(request):
+    value = request.GET['timeout']
     command = "shutdown -s".split(" ")
     subprocess.Popen(command, stdout=subprocess.PIPE)
     return redirect('gui:index')
@@ -62,6 +70,7 @@ def logout(request):
     return redirect('gui:index')
 
 def restart(request):
+    value = request.GET['timeout']
     subprocess.Popen(['reboot'], stdout=subprocess.PIPE)
     return redirect('gui:index')
 
