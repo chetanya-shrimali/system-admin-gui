@@ -2,9 +2,14 @@ from __future__ import unicode_literals
 
 import subprocess
 import os
+import tkinter as tk
+from tkinter import filedialog
 
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.http import HttpResponse
+
+
 
 def index(request):
     return render(request, 'gui/index.html')
@@ -13,6 +18,25 @@ def grub(request):
     command = "gedit /etc/default/grub".split(" ")
     subprocess.Popen(command, stdout=subprocess.PIPE)
     return redirect('gui:index')
+
+def grub_order(request):
+    pass
+
+def grub_timeout(request):
+    pass
+
+def change_splash(request):
+    root = tk.Tk()
+    root.withdraw()
+
+    file_path = filedialog.askopenfilename()
+    splash_path = "sudo cp {} /boot/grub".format(file_path)
+
+    if file_path.split(".")[1] not in ["jpg", "png", "jpeg"]:
+        messages.error(request, 'Please select an Image instead!')
+
+    return redirect('gui:index')
+
 
 def shutdown(request):
     command = "shutdown -s".split(" ")

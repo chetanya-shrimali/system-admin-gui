@@ -10,4 +10,5 @@ urlpatterns = [
     url(regex=r'^logout/$', view=views.logout, name='logout'),
     url(regex=r'^restart/$', view=views.restart, name='restart'),
     url(regex=r'^force-restart/$', view=views.force_restart, name='force-restart'),
+    url(regex=r'^change-splash/$', view=views.change_splash, name='change-splash')
 ]
