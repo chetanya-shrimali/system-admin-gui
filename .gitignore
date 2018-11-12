@@ -7,3 +7,7 @@ system_admin_and_maintenance/wsgi.pyc
 gui/views.pyc
 gui/urls.pyc
 gui/__init__.pyc
+cpu.txt
+Memory.txt
+venv
+memory.txt

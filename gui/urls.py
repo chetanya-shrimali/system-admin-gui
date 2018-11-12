@@ -13,4 +13,6 @@ urlpatterns = [
     url(regex=r'^change-splash/$', view=views.change_splash, name='change-splash'),
     url(regex=r'^change-grub-order/$', view=views.grub_order, name='grub-order'),
     url(regex=r'^change-grub-timeout/$', view=views.grub_timeout, name='grub-timeout'),
+    url(regex=r'^pie-chart/$', view=views.pie_chart, name='pie-chart'),
+
 ]
