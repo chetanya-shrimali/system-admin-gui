@@ -270,3 +270,15 @@ def log_rotate_form(request):
 
     # root.destroy()
     return HttpResponse("Successful!")
+
+def assignment4(request):
+    return render(request, 'gui/assignment4.html')
+
+def assignment5(request):
+    return render(request, 'gui/assignment5.html')
+
+def assignment6(request):
+    return render(request, 'gui/assignment6.html')
+
+def assignment7(request):
+    return render(request, 'gui/assignment6.html')

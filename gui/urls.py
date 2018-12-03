@@ -24,4 +24,8 @@ urlpatterns = [
     url(regex=r'^rsyslog-form/$', view=views.rsyslog_form, name='rsyslog-form'),
     url(regex=r'^log-rotate/$', view=views.log_rotate, name='log-rotate'),
     url(regex=r'^log-rotate-form/$', view=views.log_rotate_form, name='log-rotate-form'),
+    url(regex=r'^assignment4/$', view=views.assignment4, name='assignment4'),
+    url(regex=r'^assignment5/$', view=views.assignment5, name='assignment5'),
+    url(regex=r'^assignment6/$', view=views.assignment6, name='assignment6'),
+    url(regex=r'^assignment7/$', view=views.assignment7, name='assignment7'),
 ]
