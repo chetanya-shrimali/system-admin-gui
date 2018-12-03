@@ -27,5 +27,4 @@ urlpatterns = [
     url(regex=r'^assignment4/$', view=views.assignment4, name='assignment4'),
     url(regex=r'^assignment5/$', view=views.assignment5, name='assignment5'),
     url(regex=r'^assignment6/$', view=views.assignment6, name='assignment6'),
-    url(regex=r'^assignment7/$', view=views.assignment7, name='assignment7'),
 ]

@@ -1,4 +1,51 @@
 {% extends "base.html" %}
 {% block content %}
-
+<div class="container">
+    <div class="row">
+    <div class="col-md-12"><center><h1>Assignment 6</h1></center></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body"><a href="/gui/add-update-permission/">Add Update File Permission</a>
+                    <form action="/gui/add-update-permission/" method="get">
+                        <input type="number" placeholder="enter value of type 777" name="number"><br>
+                        {% comment %} <input type="file" name="file"> {% endcomment %}
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body"><a href="/gui/umask-calculator/">Umask Calculator</a>
+                    <form action="/gui/umask-calculator/" method="get">
+                        <input type="number" placeholder="enter value of type 777" name="number"><br>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+                {% comment %} <div class="card-body"><a href="/gui/renice/">Umask Value</a></div> {% endcomment %}
+            </div>
+            <div class="card">
+                <div class="card-body"><a href="/gui/add-update-user-permission-acl/">User ACL</a>
+                    <form action="/gui/add-update-user-permission-acl/" method="get">
+                        <input type="text" placeholder="enter username" name="name"><br>
+                        <input type="text" placeholder="enter value of type rwx" name="number"><br>
+                        {% comment %} <input type="file" name="file"> {% endcomment %}
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body"><a href="/gui/add-update-group-permission-acl/">Group ACL</a>
+                    <form action="/gui/add-update-group-permission-acl/" method="get">
+                        <input type="text" placeholder="enter username" name="name"><br>
+                        <input type="text" placeholder="enter value of type rwx" name="number"><br>
+                        {% comment %} <input type="file" name="file"> {% endcomment %}
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+    </div>
+</div>
 {% endblock %}

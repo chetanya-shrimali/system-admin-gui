@@ -279,6 +279,3 @@ def assignment5(request):
 
 def assignment6(request):
     return render(request, 'gui/assignment6.html')
-
-def assignment7(request):
-    return render(request, 'gui/assignment6.html')
