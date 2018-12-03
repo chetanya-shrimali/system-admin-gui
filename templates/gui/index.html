@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 col-sm-12">
+
             {% if messages %}
             <ul class="messages">
                 {% for message in messages %}
@@ -80,7 +81,52 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-body"><a href="/gui/pie-chart/">Pie Chart</a></div>
+                <div class="card-body"><a href="/gui/pie-chart-cpu/">CPU Usage</a></div>
+            </div>
+            <div class="card">
+                <div class="card-body"><a href="/gui/pie-chart-memory/">Memory Usage</a></div>
+            </div>
+            <div class="card">
+                <div class="card-body"><a href="/gui/renice/">Renice</a></div>
+            </div>
+            Lab 6
+            <div class="card">
+                <div class="card-body"><a href="/gui/add-update-permission/">Add Update File Permission</a>
+                    <form action="/gui/add-update-permission/" method="get">
+                        <input type="number" placeholder="enter value of type 777" name="number"><br>
+                        {% comment %} <input type="file" name="file"> {% endcomment %}
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body"><a href="/gui/umask-calculator/">Umask Calculator</a>
+                    <form action="/gui/umask-calculator/" method="get">
+                        <input type="number" placeholder="enter value of type 777" name="number"><br>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+                {% comment %} <div class="card-body"><a href="/gui/renice/">Umask Value</a></div> {% endcomment %}
+            </div>
+            <div class="card">
+                <div class="card-body"><a href="/gui/add-update-user-permission-acl/">User ACL</a>
+                    <form action="/gui/add-update-user-permission-acl/" method="get">
+                        <input type="text" placeholder="enter username" name="name"><br>
+                        <input type="text" placeholder="enter value of type rwx" name="number"><br>
+                        {% comment %} <input type="file" name="file"> {% endcomment %}
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body"><a href="/gui/add-update-group-permission-acl/">Group ACL</a>
+                    <form action="/gui/add-update-group-permission-acl/" method="get">
+                        <input type="text" placeholder="enter username" name="name"><br>
+                        <input type="text" placeholder="enter value of type rwx" name="number"><br>
+                        {% comment %} <input type="file" name="file"> {% endcomment %}
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
             </div>
         </div>
     </div>

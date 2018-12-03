@@ -2,8 +2,8 @@ from __future__ import unicode_literals
 
 import subprocess
 import os
-# import Tkinter as tk
-# from tkinter import filedialog
+from Tkinter import *
+from tkFileDialog import *
 import matplotlib.pyplot as plt
 
 from django.shortcuts import render, redirect
@@ -79,19 +79,30 @@ def force_restart(request):
     subprocess.Popen(['reboot', '--force'], stdout=subprocess.PIPE)
     return redirect('gui:index')
 
-def pie_chart(request):
+# Lab 5
+
+def pie_chart_memory(request):
     cpu_usage_plot = "ps aux | awk 'NR>2{arr[$1]+=$3}END{for(i in arr) print i,arr[i]}' > cpu.txt"
-    memory_usage_plot = "ps aux | awk 'NR>2{arr[$1]+=$6}END{for(i in arr) print i,arr[i]/1024}' > memory.txt"
 
     os.system(cpu_usage_plot)
-    os.system(memory_usage_plot)
 
     file_path = os.path.dirname(os.path.dirname(__file__))
 
     plot_data(open(os.path.join(file_path, 'cpu.txt'), 'r'))
+
+    return redirect('gui:index')
+
+
+def pie_chart_cpu(request):
+    memory_usage_plot = "ps aux | awk 'NR>2{arr[$1]+=$6}END{for(i in arr) print i,arr[i]/1024}' > memory.txt"
+
+    os.system(memory_usage_plot)
+
+    file_path = os.path.dirname(os.path.dirname(__file__))
+
     plot_data(open(os.path.join(file_path, 'memory.txt'), 'r'))
 
-    return HttpResponse("successful!")
+    return redirect('gui:index')
 
 def plot_data(data):
     dat_list = {}
@@ -107,3 +118,117 @@ def plot_data(data):
     plt.axis('equal')
     plt.show()
 
+def renice(request):
+    top_list = "ps -eo ni,pid --sort=-pcpu | head -n 6 > nice.txt"
+    os.system(top_list)
+
+    file_path = os.path.dirname(os.path.dirname(__file__))
+    top_list = open(os.path.join(file_path, 'nice.txt'), 'r')
+    dat_arr = []
+
+    for i in top_list.readlines():
+        dat_list = {}
+        split_list = i.split()
+        dat_list["ni"] = split_list[0]
+        dat_list["pid"] = split_list[1]
+        os.system("sudo renice 4 -p " + str(split_list[1]) + " >> renice.output.txt")
+        dat_arr.append(dat_list)
+    print(dat_arr)
+
+    top_list_renice = "ps -eo ni,pid --sort=-pcpu | head -n 6 > renice.txt"
+    os.system(top_list_renice)
+
+    return redirect('gui:index')
+
+# Lab 6
+def set_permission(request):
+    value = request.GET['number']
+    if value:
+        filename = check_value(request, value)
+        cmd = "sudo chmod " + str(value) + " " + filename
+        print(cmd)
+        os.system(cmd)
+
+    else:
+        messages.error(request, 'Enter a Number')
+    return redirect("gui:index")
+
+def umask_calculator(request):
+    value = request.GET['number']
+    if value:
+        filename = check_value(request, value)
+        print(filename)
+        pass
+    else:
+        messages.error(request, 'Enter a Number')
+    print(value)
+    return redirect("gui:index")
+
+
+def acl_user_permission(request):
+    name = request.GET['name']
+    value = request.GET['number']
+    if value:
+        file_name = check_acl_value(request, value)
+        # filename = check_value(value)
+        cmd = "sudo -S setfacl -m u:{}:{} {}".format(name, value, file_name)
+        print(cmd)
+        os.system(cmd)
+    else:
+        messages.error(request, 'Enter a Number')
+    # print(value)
+    return redirect("gui:index")
+
+def acl_group_permission(request):
+    name = request.GET['name']
+    value = request.GET['number']
+    if value:
+        file_name = check_acl_value(request, value)
+        # filename = check_value(value)
+        cmd = "sudo -S setfacl -m g:{}:{} {}".format(name, value, file_name)
+        # print(cmd)
+        os.system(cmd)
+    else:
+        messages.error(request, 'Enter a Number')
+    print(value)
+    return redirect("gui:index")
+
+def check_acl_value(request, value):
+    root = Tk()
+    root.withdraw()
+    file_name = askopenfilename(parent=root)
+
+    if not file_name:
+        messages.error(request, 'Please select a file')
+        return redirect("gui:index")
+    if len(value) not in range(1,4):
+        messages.error(request, 'Length should be max. 3 characters long')
+        return redirect("gui:index")
+    return file_name
+
+
+def check_value(request, value):
+    root = Tk()
+    root.withdraw()
+    file_name = askopenfilename(parent=root)
+
+    if not file_name:
+        messages.error(request, 'Please select a file')
+        return redirect("gui:index")
+
+    if len(value) != 3:
+        messages.error(request, 'Please enter a 3 digit number')
+        return redirect("gui:index")
+
+    value_int = int(value)
+    if value != '000':
+        while value_int%10 > 0:
+            temp = value_int%10
+            print(temp)
+            value_int= value_int/10
+            if temp not in range(0,8):
+                messages.error(request, 'value should be in range 0 - 7')
+                return redirect("gui:index")
+    root.destroy()
+    return file_name
+# Lab 7

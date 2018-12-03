@@ -13,6 +13,11 @@ urlpatterns = [
     url(regex=r'^change-splash/$', view=views.change_splash, name='change-splash'),
     url(regex=r'^change-grub-order/$', view=views.grub_order, name='grub-order'),
     url(regex=r'^change-grub-timeout/$', view=views.grub_timeout, name='grub-timeout'),
-    url(regex=r'^pie-chart/$', view=views.pie_chart, name='pie-chart'),
-
+    url(regex=r'^pie-chart-cpu/$', view=views.pie_chart_cpu, name='pie-chart-cpu'),
+    url(regex=r'^pie-chart-memory/$', view=views.pie_chart_memory, name='pie-chart-memory'),
+    url(regex=r'^renice/$', view=views.renice, name='renice'),
+    url(regex=r'^add-update-permission/$', view=views.set_permission, name='add-permission'),
+    url(regex=r'^umask-calculator/$', view=views.umask_calculator, name='umask-calculator'),
+    url(regex=r'^add-update-user-permission-acl/$', view=views.acl_user_permission, name='user-acl'),
+    url(regex=r'^add-update-group-permission-acl/$', view=views.acl_group_permission, name='group-acl'),
 ]

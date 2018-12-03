@@ -11,3 +11,10 @@ cpu.txt
 Memory.txt
 venv
 memory.txt
+system_admin_and_maintenance/__pycache__/__init__.cpython-36.pyc
+system_admin_and_maintenance/__pycache__/settings.cpython-36.pyc
+renice.output.txt
+nice.txt
+renice.txt
+.vscode/settings.json
+testfile
