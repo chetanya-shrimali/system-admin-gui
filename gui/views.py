@@ -29,7 +29,7 @@ def grub_order(request):
     else:
         change_default="sudo -S sed -i s/GRUB_DEFAULT=.*/GRUB_DEFAULT={}/ /etc/default/grub".format(value)
         print(change_default)
-
+        os.system(change_default)
     return redirect('gui:index')
 
 def grub_timeout(request):
@@ -37,6 +37,7 @@ def grub_timeout(request):
     if value:
         timeout="sudo -S sed -i s/GRUB_TIMEOUT=.*/GRUB_TIMEOUT={}/ /etc/default/grub".format(value)
         print(timeout)
+        os.system(timeout)
     else:
         messages.error(request, 'Please enter time!')
     return redirect('gui:index')
@@ -60,8 +61,9 @@ def change_splash(request):
 
 def shutdown(request):
     value = request.GET['timeout']
-    command = "shutdown -s".split(" ")
-    subprocess.Popen(command, stdout=subprocess.PIPE)
+    command = "shutdown -h {}".format(value)
+    print(command)
+    os.system(command)
     return redirect('gui:index')
 
 def cancel_shutdown(request):
@@ -243,14 +245,21 @@ def log_rotate(request):
 def rsyslog_form(request):
     facility = request.GET['facility']
     level = request.GET['level']
-    symbol_1 = request.GET['symbol_1']
-    symbol_2 = request.GET['symbol_2']
-    # root = Tk()
-    # root.withdraw()
-    # file_name = askopenfilename(parent=root)
+    symbol_1 = ''
+    symbol_2 = ''
+    if 'symbol_1' in request.GET:
+        symbol_1 = request.GET['symbol_1']
+    if 'symbol_2' in request.GET:
+        symbol_2 = request.GET['symbol_2']
 
-    # root.destroy()
-    return HttpResponse("Successful!")
+    root = Tk()
+    root.withdraw()
+    file_name = askopenfilename(parent=root)
+
+    cmd = "echo '{}.{}{}{}    {}' >> /etc/rsyslog.d/50-default.conf".format(facility, symbol_1, symbol_2, level, file_name)
+    os.system(cmd)
+    root.destroy()
+    return redirect("gui:rsyslog")
 
 def log_rotate_form(request):
     symbol_1 = request.GET['symbol_1']
