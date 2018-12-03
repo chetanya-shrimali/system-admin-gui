@@ -262,18 +262,21 @@ def rsyslog_form(request):
     return redirect("gui:rsyslog")
 
 def log_rotate_form(request):
-    symbol_1 = request.GET['symbol_1']
-    symbol_2 = request.GET['symbol_2']
-    # facility = request.GET['facility']
-    # level = request.GET['level']
-    # symbol_1 = request.GET['symbol_1']
-    # symbol_2 = request.GET['symbol_2']
-    # root = Tk()
-    # root.withdraw()
-    # file_name = askopenfilename(parent=root)
+    size_value = request.GET['size_value']
+    size = request.GET['size']
+    interval = request.GET['interval']
+    num_files = request.GET['num_files']
+    compression = request.GET['compression']
+    not_rotate = ''
+    if 'not-rotate' in request.GET:
+        not_rotate = request.GET['not-rotate']
 
-    # root.destroy()
-    return HttpResponse("Successful!")
+    root = Tk()
+    root.withdraw()
+    file_name = askopenfilename(parent=root)
+
+    root.destroy()
+    return redirect("gui:log-rotate")
 
 def assignment4(request):
     return render(request, 'gui/assignment4.html')
