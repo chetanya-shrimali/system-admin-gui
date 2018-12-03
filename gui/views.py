@@ -42,16 +42,16 @@ def grub_timeout(request):
     return redirect('gui:index')
 
 def change_splash(request):
-    # root = tk.Tk()
-    # root.withdraw()
+    root = Tk()
+    root.withdraw()
+    file_name = askopenfilename(parent=root)
 
-    # file_path = filedialog.askopenfilename()
-    # splash_path = "sudo cp {} /boot/grub".format(file_path)
+    splash_path = "sudo cp {} /boot/grub".format(file_path)
 
-    # if file_path.split(".")[1] not in ["jpg", "png", "jpeg"]:
-    #     messages.error(request, 'Please select an Image instead!')
+    if file_path.split(".")[1] not in ["jpg", "png", "jpeg"]:
+        messages.error(request, 'Please select an Image instead!')
 
-    # root.destroy()
+    root.destroy()
     return redirect('gui:index')
 
 
