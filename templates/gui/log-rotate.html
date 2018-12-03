@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+      <form action="/gui/rsyslog-form/" method="get">
+        <div class="form-group">
+            <input type="number" class="form-control" name="size_value" id="usr" placeholder="enter size value like 1024">
+        </div>
+        <div class="form-group">
+            <select class="form-control" name='size' id="inlineFormCustomSelect">
+                <option selected>size</option>
+                <option value="kb">Kb</option>
+                <option value="mb">Mb</option>
+                <option value="gb">Gb</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select class="form-control" name='interval' id="inlineFormCustomSelect">
+                <option selected>Interval</option>
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+        </select>
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control" name="num_files" placeholder="enter size value like 1024">
+        </div>
+        <div class="form-group">
+            <select class="form-control" name='compression' id="inlineFormCustomSelect">
+                <option selected>Compression</option>
+                <option value="compress">compress</option>
+                <option value="delaycompress">delaycompress</option>
+            </select>
+        </div>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" name="symbol_2" value="=">Do not rotate if log file is empty
+            </label>
+        </div>
+        <br>
+        **On clicking submit you'll be asked to select a log file
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  <div class="col-md-2"></div>
+</div>
+</div>
+{% endblock %}

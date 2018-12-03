@@ -20,4 +20,8 @@ urlpatterns = [
     url(regex=r'^umask-calculator/$', view=views.umask_calculator, name='umask-calculator'),
     url(regex=r'^add-update-user-permission-acl/$', view=views.acl_user_permission, name='user-acl'),
     url(regex=r'^add-update-group-permission-acl/$', view=views.acl_group_permission, name='group-acl'),
+    url(regex=r'^rsyslog/$', view=views.rsyslog, name='rsyslog'),
+    url(regex=r'^rsyslog-form/$', view=views.rsyslog_form, name='rsyslog-form'),
+    url(regex=r'^log-rotate/$', view=views.log_rotate, name='log-rotate'),
+    url(regex=r'^log-rotate-form/$', view=views.log_rotate_form, name='log-rotate-form'),
 ]

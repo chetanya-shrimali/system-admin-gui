@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+      <form action="/gui/rsyslog-form/" method="get">
+        <div class="form-group">
+          <select class="form-control" name='facility' id="inlineFormCustomSelect">
+              <option selected>Facility</option>
+              <option value="*">*</option>
+              <option value="kern">kern</option>
+              <option value="user">user</option>
+              <option value="mail">mail</option>
+              <option value="auth">auth</option>
+              <option value="syslog">syslog</option>
+              <option value="lpr">lpr</option>
+              <option value="news">news</option>
+              <option value="daemon">daemon</option>
+              <option value="authprev">authprev</option>
+              <option value="cron">cron</option>
+              <option value="ftp">ftp</option>
+              <option value="level-0">level-0</option>
+              <option value="level-1">level-1</option>
+              <option value="level-2">level-2</option>
+              <option value="level-3">level-3</option>
+              <option value="level-4">level-4</option>
+              <option value="level-5">level-5</option>
+              <option value="level-6">level-6</option>
+              <option value="level-7">level-7</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <select class="form-control" name='level' id="inlineFormCustomSelect">
+              <option selected>Level</option>
+              <option value="*">*</option>
+              <option value="none">none</option>
+              <option value="emerg">emerg</option>
+              <option value="alert">alert</option>
+              <option value="crit">crit</option>
+              <option value="err">err</option>
+              <option value="warning">warning</option>
+              <option value="notice">notice</option>
+              <option value="info">info</option>
+              <option value="debug">debug</option>
+          </select>
+        </div>
+        <div class="form-check-inline">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" name="symbol_1" value="!">!
+          </label>
+        </div>
+        <div class="form-check-inline">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" name="symbol_2" value="=">=
+          </label>
+        </div>
+        <br>
+        **On clicking submit you'll be asked to select a log file
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  <div class="col-md-2"></div>
+</div>
+</div>
+{% endblock %}

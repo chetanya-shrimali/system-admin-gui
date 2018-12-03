@@ -234,4 +234,39 @@ def check_value(request, value):
                 return redirect("gui:index")
     root.destroy()
     return file_name
+
 # Lab 7
+
+def rsyslog(request):
+    return render(request, 'gui/rsyslog.html')
+
+
+def log_rotate(request):
+    return render(request, 'gui/log-rotate.html')
+
+
+def rsyslog_form(request):
+    facility = request.GET['facility']
+    level = request.GET['level']
+    symbol_1 = request.GET['symbol_1']
+    symbol_2 = request.GET['symbol_2']
+    # root = Tk()
+    # root.withdraw()
+    # file_name = askopenfilename(parent=root)
+
+    # root.destroy()
+    return HttpResponse("Successful!")
+
+def log_rotate_form(request):
+    symbol_1 = request.GET['symbol_1']
+    symbol_2 = request.GET['symbol_2']
+    # facility = request.GET['facility']
+    # level = request.GET['level']
+    # symbol_1 = request.GET['symbol_1']
+    # symbol_2 = request.GET['symbol_2']
+    # root = Tk()
+    # root.withdraw()
+    # file_name = askopenfilename(parent=root)
+
+    # root.destroy()
+    return HttpResponse("Successful!")
