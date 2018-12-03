@@ -1,0 +1,9 @@
+Gaurav Gaurav201552003 /bin/bash
+Shrihans Shrihans201552012 /bin/bash
+Urvashi Urvashi201552023 /bin/bash
+Riya Riya201552026 /bin/bash
+Pavankumar Pavankumar201552028 /bin/bash
+Shweta Shweta201552042 /bin/sh
+Ayush Ayush201552046 /bin/sh
+Rajat Rajat201552047 /bin/sh
+Saurabh Saurabh201552051 /bin/sh

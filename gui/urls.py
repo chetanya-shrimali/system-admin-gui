@@ -25,6 +25,9 @@ urlpatterns = [
     url(regex=r'^log-rotate/$', view=views.log_rotate, name='log-rotate'),
     url(regex=r'^log-rotate-form/$', view=views.log_rotate_form, name='log-rotate-form'),
     url(regex=r'^assignment4/$', view=views.assignment4, name='assignment4'),
+    url(regex=r'^add-user/$', view=views.add_user, name='add-user'),
+    url(regex=r'^del-user/$', view=views.del_user, name='del-user'),
+    url(regex=r'^add-users-list/$', view=views.add_users_list, name='add-users-list'),
     url(regex=r'^assignment5/$', view=views.assignment5, name='assignment5'),
     url(regex=r'^assignment6/$', view=views.assignment6, name='assignment6'),
 ]

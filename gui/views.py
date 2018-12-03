@@ -86,25 +86,17 @@ def force_restart(request):
 
 def pie_chart_memory(request):
     cpu_usage_plot = "ps aux | awk 'NR>2{arr[$1]+=$3}END{for(i in arr) print i,arr[i]}' > cpu.txt"
-
     os.system(cpu_usage_plot)
-
     file_path = os.path.dirname(os.path.dirname(__file__))
-
     plot_data(open(os.path.join(file_path, 'cpu.txt'), 'r'))
-
     return redirect('gui:index')
 
 
 def pie_chart_cpu(request):
     memory_usage_plot = "ps aux | awk 'NR>2{arr[$1]+=$6}END{for(i in arr) print i,arr[i]/1024}' > memory.txt"
-
     os.system(memory_usage_plot)
-
     file_path = os.path.dirname(os.path.dirname(__file__))
-
     plot_data(open(os.path.join(file_path, 'memory.txt'), 'r'))
-
     return redirect('gui:index')
 
 def plot_data(data):
@@ -157,15 +149,18 @@ def set_permission(request):
     return redirect("gui:index")
 
 def umask_calculator(request):
-    value = request.GET['number']
-    if value:
-        filename = check_value(request, value)
-        print(filename)
-        pass
+    user = request.GET['user']
+    group = request.GET['group']
+    others = request.GET['others']
+    if user or group or others:
+        root = Tk()
+        root.withdraw()
+        file_name = askopenfilename(parent=root)
+        print("{} {} {}".format(user, group, others, file_name))
+        root.destroy()
     else:
-        messages.error(request, 'Enter a Number')
-    print(value)
-    return redirect("gui:index")
+        messages.error(request, 'Enter a values')
+    return redirect("gui:assignment6")
 
 
 def acl_user_permission(request):
@@ -273,6 +268,36 @@ def log_rotate_form(request):
 
 def assignment4(request):
     return render(request, 'gui/assignment4.html')
+
+def add_user(request):
+    name = request.GET['username']
+    password = request.GET['password']
+    cmd_1 = "sudo useradd -m {}".format(name)
+    cmd_2 = "{}:{}| sudo chpasswd".format(name, password)
+    os.system(cmd_1)
+    os.system(cmd_2)
+    return redirect("gui:assignment4")
+
+def del_user(request):
+    name = request.GET['username']
+    cmd = "sudo deluser --remove-home {}".format(name)
+    os.system(cmd)
+    return redirect("gui:assignment4")
+
+def add_users_list(request):
+    file_path = os.path.dirname(os.path.dirname(__file__))
+    users_list = open(os.path.join(file_path, 'users.txt'), 'r')
+    users_arr = []
+
+    for i in users_list.readlines():
+        temp = i.split(" ")
+        cmd_1 = "sudo useradd -m {} -s {}".format(temp[0], temp[2])
+        cmd_2 = "{}:{}| sudo chpasswd".format(temp[0], temp[1])
+        # cmd = "sudo deluser --remove-home {}".format(temp[0])
+        # os.system(cmd)
+        os.system(cmd_1)
+        os.system(cmd_2)
+    return redirect("gui:assignment4")
 
 def assignment5(request):
     return render(request, 'gui/assignment5.html')
