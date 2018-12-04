@@ -5,7 +5,7 @@ It contains the assigments from 3 till 7.
 
 - Get the requirements
 
-`$ sudo apt-get install python-pip`
+    `$ sudo apt-get install python-pip`
 
 - Fork and clone the system-admin-gui repository
 
