@@ -41,7 +41,9 @@ It contains the assigments from 3 till 7.
 
 	`$ python manage.py runserver`
 
-open [127.0.0.1:8000](127.0.0.1:8000) in the browser
+- Open [127.0.0.1:8000](127.0.0.1:8000) in the browser
+
+- If you want to!
 
 - Create the admin
 
