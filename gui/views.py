@@ -270,7 +270,7 @@ def log_rotate_form(request):
     not_rotate = ''
     if 'not-rotate' in request.GET:
         not_rotate = request.GET['not-rotate']
-
+    cmd = "/etc/logrotate.d/rsyslog"
     root = Tk()
     root.withdraw()
     file_name = askopenfilename(parent=root)
