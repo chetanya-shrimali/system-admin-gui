@@ -15,6 +15,18 @@ It contains the assigments from 3 till 7.
 
 	`$ cd system-admin-gui`
 
+- Create virtual environment
+
+	`$ virtualenv venv`
+
+- Activate virtual environment
+
+	`$ source venv/bin/activate`
+
+- If you want to deactivate it
+
+	`$ deactivate`
+
 - Install requirements from `requirements.txt`
 
     `$ pip install -r requirements.txt`

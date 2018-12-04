@@ -142,13 +142,15 @@ def set_permission(request):
     value = request.GET['number']
     if value:
         filename = check_value(request, value)
+        cmd = "sudo chmod 000" + filename
+        os.system(cmd)
         cmd = "sudo chmod " + str(value) + " " + filename
         print(cmd)
         os.system(cmd)
 
     else:
         messages.error(request, 'Enter a Number')
-    return redirect("gui:index")
+    return redirect("gui:assignment6")
 
 def umask_calculator(request):
     user = request.GET['user']
@@ -256,7 +258,8 @@ def rsyslog_form(request):
     root.withdraw()
     file_name = askopenfilename(parent=root)
 
-    cmd = "echo '{}.{}{}{}    {}' >> /etc/rsyslog.d/50-default.conf".format(facility, symbol_1, symbol_2, level, file_name)
+    cmd = "sudo echo '{}.{}{}{}    {}' >> /etc/rsyslog.conf".format(facility, symbol_1, symbol_2, level, file_name)
+    print(cmd)
     os.system(cmd)
     root.destroy()
     return redirect("gui:rsyslog")
